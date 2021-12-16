@@ -13,7 +13,7 @@ public class PlayerControler : MonoBehaviour
 
     [Header("Fire")]
     [SerializeField]
-    private GameObject _minugunWaepon;
+    private GameObject _minugunBullet;
     [SerializeField]
     private GameObject _minugunLeft;
     [SerializeField]
@@ -42,11 +42,12 @@ public class PlayerControler : MonoBehaviour
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2( h * _speed, rb.velocity.y);
+        rb.velocity = new Vector2( h * _speed, v * _speed);
 
         if(Input.GetButton("Jump"))
         {
-            Instantiate( _minugunWaepon.transform);
+           Instantiate( _minugunBullet,new Vector2(_minugunLeft.transform.position.x, _minugunLeft.transform.position.y), _minugunLeft.transform.rotation) ;
+            Instantiate(_minugunBullet, new Vector2(_minugunRight.transform.position.x, _minugunRight.transform.position.y), _minugunRight.transform.rotation);
         }
         
     }
